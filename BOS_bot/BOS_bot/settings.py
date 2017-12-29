@@ -25,7 +25,7 @@ SECRET_KEY = '7946c*r3ls)2kuv=ws5+kzw6j*oz$3-xb4c(ovv1^f4c+tzize'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '25e8e0b6.ngrok.io']
 
 
 # Application definition
@@ -37,6 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'channels',
+    'fb_BOS_bot',
 ]
 
 MIDDLEWARE = [
@@ -105,7 +108,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Ho_Chi_Minh'
 
 USE_I18N = True
 
@@ -118,3 +121,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+CHANNEL_LAYERS = {
+    "default": {
+        # "BACKEND": "asgi_redis.RedisChannelLayer",
+        # "CONFIG": {
+        #     "hosts": [("localhost", 6379)],
+        # },
+        "BACKEND": "asgiref.inmemory.ChannelLayer",
+        "ROUTING": "channels.routing.channel_routing",
+    },
+}
